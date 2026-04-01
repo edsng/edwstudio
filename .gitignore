@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Claude
+.claude
+
+# Demo context
+DemoContext.MD
