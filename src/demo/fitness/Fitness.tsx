@@ -79,7 +79,7 @@ const faqs = [
 
 // ─── Hooks ───
 
-function useReveal(threshold = 0.45) {
+function useReveal(threshold = 0.15) {
   const ref = useRef<HTMLElement | null>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
