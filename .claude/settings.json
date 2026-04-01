@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc:*)",
+      "Bash(npm run:*)",
+      "Bash(curl -s http://localhost:5199)",
+      "Bash(npx --yes sharp-cli -i public/favi.svg -o public/favicon-48.png -- resize 48 48)",
+      "Bash(npx --yes sharp-cli -i public/favi.svg -o public/favicon-192.png -- resize 192 192)",
+      "Bash(node -e \":*)",
+      "Bash(npm install:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(rm -f Restaurant.tsx Ecommerce.tsx Dashboard.tsx PortfolioTemplate.tsx Fitness.tsx RealEstate.tsx)",
+      "Bash(mkdir -p detailing real-estate fitness barbershop landscaping medspa roofing)",
+      "WebFetch(domain:exercisecoach.com)",
+      "WebFetch(domain:www.nasm.org)"
+    ]
+  }
+}
