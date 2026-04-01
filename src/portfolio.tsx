@@ -40,7 +40,7 @@ const LINKS: LinkMap = {
   linkedin: "https://linkedin.com/in/edwsng",
   x: "https://x.com/rxdlne",
   instagram: "https://www.instagram.com/rxdlne/",
-  email: "mailto:edwsngstudio@gmail.com",
+  email: "mailto:edward@edwstudio.com",
 };
 
 const services: Service[] = [
