@@ -333,7 +333,7 @@ const Pillars = () => {
 };
 
 const ServicesSection: React.FC<{ onEstimate: () => void }> = ({ onEstimate }) => {
-  const [ref, visible] = useReveal();
+  const [ref, visible] = useReveal(0.45, 0.15);
   const cls = visible ? "eg-reveal--visible" : "";
   return (
     <section id="eg-services" ref={ref} className="eg-services">
