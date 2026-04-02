@@ -469,38 +469,47 @@ const BrickDrawSection = () => {
       return;
     }
 
-    const ctx = gsap.context(() => {
-      // Set initial hidden state immediately
-      gsap.set(groups, {
-        opacity: 0,
-        y: -25,
-        rotation: -2,
-        transformOrigin: "50% 50%",
-      });
+    // Set initial hidden state immediately (before GSAP timeline)
+    gsap.set(groups, {
+      opacity: 0,
+      y: -25,
+      rotation: -2,
+      transformOrigin: "50% 50%",
+    });
 
-      // Staggered scroll-linked reveal
-      const sorted = STAGGER_ORDER.map((idx) => groups[idx]);
+    // Delay GSAP initialization so parent scroll-to-top runs first
+    const initTimer = setTimeout(() => {
+      // Ensure scroll is at top before calculating trigger positions
+      window.scrollTo(0, 0);
 
-      gsap.to(sorted, {
-        opacity: 1,
-        y: 0,
-        rotation: 0,
-        ease: "power2.out",
-        stagger: 0.15,
-        scrollTrigger: {
-          trigger: section,
-          start: "top 25%",
-          end: "top 2%",
-          scrub: 1.2,
-          invalidateOnRefresh: true,
-        },
-      });
+      const ctx = gsap.context(() => {
+        const sorted = STAGGER_ORDER.map((idx) => groups[idx]);
 
-      // Refresh after layout settles (important for mobile)
-      setTimeout(() => ScrollTrigger.refresh(), 100);
-    }, section);
+        gsap.to(sorted, {
+          opacity: 1,
+          y: 0,
+          rotation: 0,
+          ease: "power2.out",
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 45%",
+            end: "top 10%",
+            scrub: 1.2,
+            invalidateOnRefresh: true,
+          },
+        });
+      }, section);
 
-    return () => ctx.revert();
+      // Store context for cleanup
+      (section as unknown as Record<string, unknown>).__gsapCtx = ctx;
+    }, 100);
+
+    return () => {
+      clearTimeout(initTimer);
+      const ctx = (section as unknown as Record<string, { revert: () => void }>).__gsapCtx;
+      if (ctx) ctx.revert();
+    };
   }, []);
 
   return (
@@ -725,8 +734,11 @@ const Landscaping = () => {
   const openModal = () => setModalOpen(true);
   useEffect(() => {
     window.scrollTo(0, 0);
-    // Refresh ScrollTrigger after scroll reset so positions are correct
-    setTimeout(() => ScrollTrigger.refresh(), 200);
+    const t = setTimeout(() => {
+      window.scrollTo(0, 0);
+      ScrollTrigger.refresh();
+    }, 50);
+    return () => clearTimeout(t);
   }, []);
 
   return (
