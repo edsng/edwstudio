@@ -723,7 +723,11 @@ const StickyCta: React.FC<{ onEstimate: () => void }> = ({ onEstimate }) => {
 const Landscaping = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const openModal = () => setModalOpen(true);
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    // Refresh ScrollTrigger after scroll reset so positions are correct
+    setTimeout(() => ScrollTrigger.refresh(), 200);
+  }, []);
 
   return (
     <div className="eg-page">
