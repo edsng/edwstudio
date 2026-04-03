@@ -72,67 +72,67 @@ const services: Service[] = [
 
 const portfolioProjects: PortfolioProject[] = [
   {
+    title: "FlowSync",
+    description:
+      "B2B SaaS landing page with interactive dashboard mockups, GSAP scroll animations, animated counters, parallax effects, and multi-step demo booking. Modern startup design with dark accents.",
+    demoPath: "/demo/saas",
+    tags: ["React", "TypeScript", "GSAP"],
+    featured: true,
+    category: "SaaS",
+  },
+  {
     title: "Diamond Touch Detailing",
     description:
-      "Premium auto detailing website with before/after gallery, service packages, and quote request flow. Dark, glossy aesthetic designed to attract luxury vehicle owners in Ontario, CA.",
+      "Premium auto detailing website with before/after gallery, service packages, multi-step quote modal with calendar booking, and sequential animations. Dark, glossy aesthetic.",
     demoPath: "/demo/detailing",
-    tags: ["React", "Tailwind CSS", "Responsive"],
-    featured: true,
-    category: "Local Business",
-  },
-  {
-    title: "Marquez Home Group",
-    description:
-      "Residential real estate team site with featured listings, neighborhood guides, and lead capture forms. Bright, elegant design built for the Inland Empire market.",
-    demoPath: "/demo/real-estate",
-    tags: ["React", "TypeScript", "CSS", "Responsive"],
-    featured: false,
-    category: "Local Business",
-  },
-  {
-    title: "Forge Performance Coaching",
-    description:
-      "Personal training site with program cards, transformation results, and consultation booking. Bold, athletic design for a Rancho Cucamonga fitness coach.",
-    demoPath: "/demo/fitness",
-    tags: ["React", "Tailwind CSS", "Responsive"],
-    featured: false,
-    category: "Local Business",
-  },
-  {
-    title: "Crown & Fade Barber Lounge",
-    description:
-      "Premium barbershop site with service pricing, barber profiles, gallery, and online booking. Dark, trendy design optimized for mobile-first booking in Pomona, CA.",
-    demoPath: "/demo/barbershop",
-    tags: ["React", "CSS", "Mobile-First"],
+    tags: ["React", "CSS", "Responsive"],
     featured: false,
     category: "Local Business",
   },
   {
     title: "Evergreen Outdoor Design",
     description:
-      "Landscaping contractor site with project showcases, service breakdowns, and estimate request forms. Clean, natural aesthetic for a Temecula outdoor design company.",
+      "Landscaping contractor site with GSAP scroll-linked paver animation, parallax sections, project hover reveals, expandable reviews, and estimate booking flow.",
     demoPath: "/demo/landscaping",
-    tags: ["React", "TypeScript", "Responsive"],
+    tags: ["React", "GSAP", "Responsive"],
+    featured: false,
+    category: "Local Business",
+  },
+  {
+    title: "Marquez Home Group",
+    description:
+      "Real estate team site with listings dashboard, interactive property modals, calendar scheduling, neighborhood guides, and multi-step consultation booking.",
+    demoPath: "/demo/real-estate",
+    tags: ["React", "TypeScript", "CSS"],
+    featured: false,
+    category: "Local Business",
+  },
+  {
+    title: "Forge Performance Coaching",
+    description:
+      "Fitness coaching site with scroll-linked 3D stats panel, multi-step booking modal with package selection, objection-handling content, and sequential card animations.",
+    demoPath: "/demo/fitness",
+    tags: ["React", "CSS", "Responsive"],
+    featured: false,
+    category: "Local Business",
+  },
+  {
+    title: "Crown & Fade Barber Lounge",
+    description:
+      "Premium barbershop site with AI-generated gallery, service pricing, barber profiles, multi-step booking with calendar, and mobile-first design.",
+    demoPath: "/demo/barbershop",
+    tags: ["React", "CSS", "Mobile-First"],
     featured: false,
     category: "Local Business",
   },
   {
     title: "Radiant Skin Aesthetics",
     description:
-      "Med spa website with treatment cards, provider credentials, and consultation booking. Minimal, calming design for a Corona aesthetics clinic.",
+      "Med spa website with treatment cards, provider credentials, press authority bar, animated counters, and consultation booking. Minimal, calming luxury design.",
     demoPath: "/demo/medspa",
-    tags: ["React", "CSS", "Tailwind CSS"],
+    tags: ["React", "TypeScript", "SaaS"],
     featured: false,
-    category: "Local Business",
-  },
-  {
-    title: "Atlas Roofing & Exteriors",
-    description:
-      "Roofing contractor site with service cards, project gallery, trust badges, and free inspection requests. Professional, conversion-focused design for Riverside, CA.",
-    demoPath: "/demo/roofing",
-    tags: ["React", "TypeScript", "Mobile-First"],
-    featured: false,
-    category: "Local Business",
+    category: "SaaS",
   },
 ];
 

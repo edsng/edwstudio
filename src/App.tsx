@@ -7,7 +7,7 @@ import Fitness from "./demo/fitness/Fitness";
 import Barbershop from "./demo/barbershop/Barbershop";
 import Landscaping from "./demo/landscaping/Landscaping";
 import MedSpa from "./demo/medspa/MedSpa";
-import Roofing from "./demo/roofing/Roofing";
+import FlowSync from "./demo/saas/FlowSync";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
         <Route path="/demo/barbershop" element={<Barbershop />} />
         <Route path="/demo/landscaping" element={<Landscaping />} />
         <Route path="/demo/medspa" element={<MedSpa />} />
-        <Route path="/demo/roofing" element={<Roofing />} />
+        <Route path="/demo/saas" element={<FlowSync />} />
       </Routes>
     </BrowserRouter>
   );
