@@ -682,9 +682,15 @@ const Portfolio: React.FC = () => {
   useEffect(() => {
     if (location.state && (location.state as { scrollTo?: string }).scrollTo) {
       const id = (location.state as { scrollTo: string }).scrollTo;
+      // Use instant scroll so user lands directly at the section without seeing a jump
       setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-      }, 100);
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "instant" });
+          // Refresh ScrollTrigger positions after scroll settles
+          setTimeout(() => ScrollTrigger.refresh(), 50);
+        }
+      }, 50);
     }
   }, [location.state]);
 

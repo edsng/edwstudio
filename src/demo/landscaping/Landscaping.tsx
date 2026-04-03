@@ -477,11 +477,8 @@ const BrickDrawSection = () => {
       transformOrigin: "50% 50%",
     });
 
-    // Delay GSAP initialization so parent scroll-to-top runs first
+    // Delay GSAP initialization so RouteChangeHandler scroll-to-top runs first
     const initTimer = setTimeout(() => {
-      // Ensure scroll is at top before calculating trigger positions
-      window.scrollTo(0, 0);
-
       const ctx = gsap.context(() => {
         const sorted = STAGGER_ORDER.map((idx) => groups[idx]);
 
@@ -732,12 +729,10 @@ const StickyCta: React.FC<{ onEstimate: () => void }> = ({ onEstimate }) => {
 const Landscaping = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const openModal = () => setModalOpen(true);
+
   useEffect(() => {
     window.scrollTo(0, 0);
-    const t = setTimeout(() => {
-      window.scrollTo(0, 0);
-      ScrollTrigger.refresh();
-    }, 50);
+    const t = setTimeout(() => { window.scrollTo(0, 0); }, 250);
     return () => clearTimeout(t);
   }, []);
 

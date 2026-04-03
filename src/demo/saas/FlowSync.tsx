@@ -930,7 +930,11 @@ const FlowSync = () => {
   const openDemo = useCallback(() => setDemoOpen(true), []);
   const pageRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const t = setTimeout(() => { window.scrollTo(0, 0); }, 250);
+    return () => clearTimeout(t);
+  }, []);
 
   // Global parallax — elements with data-speed move at different scroll rates
   useEffect(() => {
@@ -976,7 +980,10 @@ const FlowSync = () => {
         );
       });
 
-      setTimeout(() => ScrollTrigger.refresh(), 200);
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+        window.scrollTo(0, 0);
+      }, 200);
     }, page);
 
     return () => ctx.revert();
