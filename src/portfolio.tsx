@@ -546,7 +546,10 @@ const Process: React.FC = () => {
 
   useEffect(() => {
     const el = sectionRef.current;
-    if (!el || window.innerWidth <= 768) return;
+    if (!el) return;
+
+    // Reduced motion: show everything immediately
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const ctx = gsap.context(() => {
       // Animate the connecting line drawing in
@@ -557,7 +560,7 @@ const Process: React.FC = () => {
         gsap.to(line, {
           strokeDashoffset: 0,
           ease: "none",
-          scrollTrigger: { trigger: el, start: "top 50%", end: "bottom 70%", scrub: 1 },
+          scrollTrigger: { trigger: el, start: "top 50%", end: "bottom 70%", scrub: 1, invalidateOnRefresh: true },
         });
       }
 
@@ -571,7 +574,7 @@ const Process: React.FC = () => {
           gsap.set(content, { opacity: 0, x: -20 });
           gsap.to(content, {
             opacity: 1, x: 0, ease: "power2.out",
-            scrollTrigger: { trigger: step, start: "top 65%", end: "top 45%", scrub: 1 },
+            scrollTrigger: { trigger: step, start: "top 75%", end: "top 55%", scrub: 1, invalidateOnRefresh: true },
           });
         }
 
@@ -579,10 +582,13 @@ const Process: React.FC = () => {
           gsap.set(dot, { scale: 0 });
           gsap.to(dot, {
             scale: 1, ease: "back.out(2)",
-            scrollTrigger: { trigger: step, start: "top 65%", end: "top 55%", scrub: 1 },
+            scrollTrigger: { trigger: step, start: "top 75%", end: "top 60%", scrub: 1, invalidateOnRefresh: true },
           });
         }
       });
+
+      // Refresh after layout settles
+      setTimeout(() => ScrollTrigger.refresh(), 200);
     }, el);
 
     return () => ctx.revert();
