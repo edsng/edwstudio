@@ -74,7 +74,7 @@ const portfolioProjects: PortfolioProject[] = [
   {
     title: "FlowSync",
     description:
-      "B2B SaaS landing page with interactive dashboard mockups, GSAP scroll animations, animated counters, parallax effects, and multi-step demo booking. Modern startup design with dark accents.",
+      "B2B SaaS product landing page with an interactive dashboard mock, scroll-driven animations, animated counters, parallax effects, and a multi-step demo booking flow. Built to feel like a real venture-backed startup.",
     demoPath: "/demo/saas",
     tags: ["React", "TypeScript", "GSAP"],
     featured: true,
@@ -83,25 +83,16 @@ const portfolioProjects: PortfolioProject[] = [
   {
     title: "Diamond Touch Detailing",
     description:
-      "Premium auto detailing website with before/after gallery, service packages, multi-step quote modal with calendar booking, and sequential animations. Dark, glossy aesthetic.",
+      "Premium auto detailing site for a high-end Ontario, CA business. Features a project gallery, tiered service packages, and a multi-step quote request with calendar scheduling. Dark, glossy aesthetic.",
     demoPath: "/demo/detailing",
     tags: ["React", "CSS", "Responsive"],
     featured: false,
     category: "Local Business",
   },
   {
-    title: "Evergreen Outdoor Design",
-    description:
-      "Landscaping contractor site with GSAP scroll-linked paver animation, parallax sections, project hover reveals, expandable reviews, and estimate booking flow.",
-    demoPath: "/demo/landscaping",
-    tags: ["React", "GSAP", "Responsive"],
-    featured: false,
-    category: "Local Business",
-  },
-  {
     title: "Marquez Home Group",
     description:
-      "Real estate team site with listings dashboard, interactive property modals, calendar scheduling, neighborhood guides, and multi-step consultation booking.",
+      "Residential real estate team site for the Inland Empire market. Includes a searchable listings dashboard, interactive property detail modals, neighborhood guides, and a consultation booking flow with calendar.",
     demoPath: "/demo/real-estate",
     tags: ["React", "TypeScript", "CSS"],
     featured: false,
@@ -110,16 +101,25 @@ const portfolioProjects: PortfolioProject[] = [
   {
     title: "Forge Performance Coaching",
     description:
-      "Fitness coaching site with scroll-linked 3D stats panel, multi-step booking modal with package selection, objection-handling content, and sequential card animations.",
+      "Personal training site for a Rancho Cucamonga fitness coach. Features a scroll-linked 3D stats panel, objection-handling content strategy, program pricing with expandable details, and a multi-step booking modal.",
     demoPath: "/demo/fitness",
     tags: ["React", "CSS", "Responsive"],
     featured: false,
     category: "Local Business",
   },
   {
+    title: "Evergreen Outdoor Design",
+    description:
+      "Landscaping and hardscaping contractor site for Temecula, CA. Features scroll-animated isometric pavers, parallax sections, project gallery with hover reveals, and an estimate request flow.",
+    demoPath: "/demo/landscaping",
+    tags: ["React", "GSAP", "Responsive"],
+    featured: false,
+    category: "Local Business",
+  },
+  {
     title: "Crown & Fade Barber Lounge",
     description:
-      "Premium barbershop site with AI-generated gallery, service pricing, barber profiles, multi-step booking with calendar, and mobile-first design.",
+      "Premium barbershop site for Pomona, CA. Includes a cut gallery, service pricing list, barber team profiles, and a multi-step appointment booking with barber selection and calendar. Dark, urban aesthetic.",
     demoPath: "/demo/barbershop",
     tags: ["React", "CSS", "Mobile-First"],
     featured: false,
@@ -128,11 +128,11 @@ const portfolioProjects: PortfolioProject[] = [
   {
     title: "Radiant Skin Aesthetics",
     description:
-      "Med spa website with treatment cards, provider credentials, press authority bar, animated counters, and consultation booking. Minimal, calming luxury design.",
+      "Med spa website for a Corona, CA aesthetics clinic. Features treatment cards, provider credentials, a press authority bar, client testimonials, and a consultation booking modal. Soft, calming luxury design.",
     demoPath: "/demo/medspa",
-    tags: ["React", "TypeScript", "SaaS"],
+    tags: ["React", "CSS", "Responsive"],
     featured: false,
-    category: "SaaS",
+    category: "Local Business",
   },
 ];
 
