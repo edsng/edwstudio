@@ -734,7 +734,7 @@ body {
 /* ─── Process ─── */
 .process {
   padding: 100px 32px;
-  max-width: 1100px;
+  max-width: 700px;
   margin: 0 auto;
 }
 
@@ -748,37 +748,96 @@ body {
   margin-bottom: 48px;
 }
 
-.process_grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+.process_timeline {
+  position: relative;
+  padding-left: 14px;
+}
+
+.process_line {
+  position: absolute;
+  left: 35px;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+  pointer-events: none;
+}
+
+.process_line-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.process_line-bg {
+  stroke: rgba(240, 236, 230, 0.06);
+  stroke-width: 1;
+}
+
+.process_line-fill {
+  stroke: rgba(240, 236, 230, 0.2);
+  stroke-width: 1.5;
+  stroke-linecap: round;
 }
 
 .process_step {
-  padding: 32px 24px;
-  border-top: 1px solid rgba(240, 236, 230, 0.08);
+  display: flex;
+  gap: 28px;
+  padding-bottom: 48px;
+  position: relative;
+}
+
+.process_step:last-child {
+  padding-bottom: 0;
+}
+
+.process_dot {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  margin-top: 24px;
+}
+
+.process_dot-ring {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(240, 236, 230, 0.1);
+  border-radius: 50%;
+}
+
+.process_dot-fill {
+  position: absolute;
+  inset: 6px;
+  background: rgba(240, 236, 230, 0.25);
+  border-radius: 50%;
+  transform-origin: center;
+}
+
+.process_step-content {
+  flex: 1;
+  padding-top: 0;
 }
 
 .process_step-number {
   font-family: 'DM Mono', monospace;
-  font-size: 12px;
+  font-size: 11px;
   color: rgba(240, 236, 230, 0.2);
   display: block;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
+  letter-spacing: 0.08em;
 }
 
 .process_step-title {
   font-family: 'Instrument Serif', serif;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 400;
   color: #f0ece6;
-  margin: 0 0 12px;
+  margin: 0 0 10px;
 }
 
 .process_step-desc {
   font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  color: rgba(240, 236, 230, 0.35);
+  font-size: 14px;
+  color: rgba(240, 236, 230, 0.4);
   line-height: 1.7;
   margin: 0;
 }
@@ -983,9 +1042,13 @@ body {
     gap: 16px;
   }
 
-  .process_grid {
-    grid-template-columns: 1fr;
-    gap: 0;
+  .process_step {
+    gap: 20px;
+    padding-bottom: 36px;
+  }
+
+  .process_step-title {
+    font-size: 20px;
   }
 
   .project-card_footer {
@@ -1014,11 +1077,6 @@ body {
   }
 }
 
-@media (max-width: 480px) {
-  .process_grid {
-    grid-template-columns: 1fr;
-  }
-}
 
 @media (min-width: 769px) {
   .nav_hamburger {

@@ -1,6 +1,10 @@
 import { useState, useEffect, useRef, type RefObject } from "react";
 import { Link, useLocation } from "react-router-dom";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./portfolio.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const logo = "/favi.svg";
 
@@ -536,23 +540,78 @@ const Work: React.FC = () => {
 // ─── Process ───
 
 const Process: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
   const [ref, visible] = useReveal();
   const cls = visible ? "reveal--visible" : "";
 
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || window.innerWidth <= 768) return;
+
+    const ctx = gsap.context(() => {
+      // Animate the connecting line drawing in
+      const line = el.querySelector(".process_line-fill") as SVGLineElement;
+      if (line) {
+        const len = line.getTotalLength();
+        gsap.set(line, { strokeDasharray: len, strokeDashoffset: len });
+        gsap.to(line, {
+          strokeDashoffset: 0,
+          ease: "none",
+          scrollTrigger: { trigger: el, start: "top 50%", end: "bottom 70%", scrub: 1 },
+        });
+      }
+
+      // Animate each step
+      const steps = el.querySelectorAll(".process_step");
+      steps.forEach((step) => {
+        const dot = step.querySelector(".process_dot-fill");
+        const content = step.querySelector(".process_step-content");
+
+        if (content) {
+          gsap.set(content, { opacity: 0, x: -20 });
+          gsap.to(content, {
+            opacity: 1, x: 0, ease: "power2.out",
+            scrollTrigger: { trigger: step, start: "top 65%", end: "top 45%", scrub: 1 },
+          });
+        }
+
+        if (dot) {
+          gsap.set(dot, { scale: 0 });
+          gsap.to(dot, {
+            scale: 1, ease: "back.out(2)",
+            scrollTrigger: { trigger: step, start: "top 65%", end: "top 55%", scrub: 1 },
+          });
+        }
+      });
+    }, el);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="process" ref={ref as RefObject<HTMLElement>} className="process">
+    <section id="process" ref={(node) => { (ref as { current: HTMLElement | null }).current = node; sectionRef.current = node; }} className="process">
       <p className={`process_label reveal ${cls}`}>How I Work</p>
 
-      <div className="process_grid">
-        {processSteps.map((step, i) => (
-          <div
-            key={step.number}
-            className={`process_step reveal ${cls}`}
-            style={{ transitionDelay: `${0.1 * (i + 1)}s` }}
-          >
-            <span className="process_step-number">{step.number}</span>
-            <h3 className="process_step-title">{step.title}</h3>
-            <p className="process_step-desc">{step.description}</p>
+      <div className="process_timeline">
+        {/* Connecting line */}
+        <div className="process_line">
+          <svg className="process_line-svg" preserveAspectRatio="none">
+            <line className="process_line-bg" x1="50%" y1="0" x2="50%" y2="100%" />
+            <line className="process_line-fill" x1="50%" y1="0" x2="50%" y2="100%" />
+          </svg>
+        </div>
+
+        {processSteps.map((step) => (
+          <div key={step.number} className="process_step">
+            <div className="process_dot">
+              <span className="process_dot-ring" />
+              <span className="process_dot-fill" />
+            </div>
+            <div className="process_step-content">
+              <span className="process_step-number">{step.number}</span>
+              <h3 className="process_step-title">{step.title}</h3>
+              <p className="process_step-desc">{step.description}</p>
+            </div>
           </div>
         ))}
       </div>
