@@ -470,14 +470,14 @@ const Problem = () => {
 
   useEffect(() => {
     const el = sectionRef.current;
-    if (!el || window.innerWidth <= 768) return;
+    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const ctx = gsap.context(() => {
       const cards = el.querySelectorAll(".fs-problem_card");
       gsap.set(cards, { opacity: 0, y: 40, scale: 0.95 });
       gsap.to(cards, {
         opacity: 1, y: 0, scale: 1,
         stagger: 0.15, ease: "power3.out",
-        scrollTrigger: { trigger: el, start: "top 60%", end: "top 20%", scrub: 1 },
+        scrollTrigger: { trigger: el, start: "top 70%", end: "top 30%", scrub: 1, invalidateOnRefresh: true },
       });
     }, el);
     return () => ctx.revert();
@@ -506,14 +506,14 @@ const Features = () => {
 
   useEffect(() => {
     const el = sectionRef.current;
-    if (!el || window.innerWidth <= 768) return;
+    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const ctx = gsap.context(() => {
       const cards = el.querySelectorAll(".fs-feature-card");
       gsap.set(cards, { opacity: 0, y: 30 });
       gsap.to(cards, {
         opacity: 1, y: 0,
         stagger: 0.1, ease: "power2.out",
-        scrollTrigger: { trigger: el, start: "top 55%", end: "top 15%", scrub: 1.2 },
+        scrollTrigger: { trigger: el, start: "top 65%", end: "top 25%", scrub: 1.2, invalidateOnRefresh: true },
       });
     }, el);
     return () => ctx.revert();
@@ -656,17 +656,17 @@ const ProductPreview = () => {
 
   useEffect(() => {
     const el = sectionRef.current;
-    if (!el || window.innerWidth <= 768) return;
+    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const ctx = gsap.context(() => {
       const text = el.querySelector(".fs-product_text");
       const visual = el.querySelector(".fs-product_visual");
       if (text) {
         gsap.set(text, { opacity: 0, x: -40 });
-        gsap.to(text, { opacity: 1, x: 0, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 55%", end: "top 25%", scrub: 1 } });
+        gsap.to(text, { opacity: 1, x: 0, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 65%", end: "top 35%", scrub: 1, invalidateOnRefresh: true } });
       }
       if (visual) {
         gsap.set(visual, { opacity: 0, x: 40, rotateY: 8 });
-        gsap.to(visual, { opacity: 1, x: 0, rotateY: 0, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 55%", end: "top 20%", scrub: 1 } });
+        gsap.to(visual, { opacity: 1, x: 0, rotateY: 0, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 65%", end: "top 30%", scrub: 1, invalidateOnRefresh: true } });
       }
     }, el);
     return () => ctx.revert();
@@ -815,14 +815,14 @@ const Testimonials = () => {
 
   useEffect(() => {
     const el = sectionRef.current;
-    if (!el || window.innerWidth <= 768) return;
+    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const ctx = gsap.context(() => {
       const cards = el.querySelectorAll(".fs-testimonial-card");
       gsap.set(cards, { opacity: 0, y: 30, scale: 0.97 });
       gsap.to(cards, {
         opacity: 1, y: 0, scale: 1,
         stagger: 0.12, ease: "power2.out",
-        scrollTrigger: { trigger: el, start: "top 55%", end: "top 20%", scrub: 1.2 },
+        scrollTrigger: { trigger: el, start: "top 65%", end: "top 30%", scrub: 1.2, invalidateOnRefresh: true },
       });
     }, el);
     return () => ctx.revert();
@@ -935,28 +935,24 @@ const FlowSync = () => {
   // Global parallax — elements with data-speed move at different scroll rates
   useEffect(() => {
     const page = pageRef.current;
-    if (!page || window.innerWidth <= 768) return;
+    if (!page || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const ctx = gsap.context(() => {
-      // Hero dashboard floats slower than content
-      gsap.to(".fs-hero_product", {
-        y: 80,
-        ease: "none",
-        scrollTrigger: { trigger: ".fs-hero", start: "top top", end: "bottom top", scrub: true },
-      });
-
-      // Hero text moves slightly faster
-      gsap.to(".fs-hero_text", {
-        y: -30,
-        ease: "none",
-        scrollTrigger: { trigger: ".fs-hero", start: "top top", end: "bottom top", scrub: true },
-      });
+      // Hero parallax only on desktop (parallax on small screens feels janky)
+      if (window.innerWidth > 768) {
+        gsap.to(".fs-hero_product", {
+          y: 80, ease: "none",
+          scrollTrigger: { trigger: ".fs-hero", start: "top top", end: "bottom top", scrub: true },
+        });
+        gsap.to(".fs-hero_text", {
+          y: -30, ease: "none",
+          scrollTrigger: { trigger: ".fs-hero", start: "top top", end: "bottom top", scrub: true },
+        });
+      }
 
       // Hero glow expands
       gsap.to(".fs-hero_glow", {
-        scale: 1.3,
-        opacity: 0,
-        ease: "none",
+        scale: 1.3, opacity: 0, ease: "none",
         scrollTrigger: { trigger: ".fs-hero", start: "top top", end: "bottom top", scrub: true },
       });
 
@@ -965,7 +961,7 @@ const FlowSync = () => {
         gsap.fromTo(heading,
           { x: -20, opacity: 0.3 },
           { x: 0, opacity: 1, ease: "power2.out",
-            scrollTrigger: { trigger: heading, start: "top 80%", end: "top 50%", scrub: 1 },
+            scrollTrigger: { trigger: heading, start: "top 85%", end: "top 55%", scrub: 1, invalidateOnRefresh: true },
           }
         );
       });
@@ -975,10 +971,12 @@ const FlowSync = () => {
         gsap.fromTo(label,
           { y: -10, opacity: 0 },
           { y: 0, opacity: 1, ease: "power2.out",
-            scrollTrigger: { trigger: label, start: "top 85%", end: "top 65%", scrub: 1 },
+            scrollTrigger: { trigger: label, start: "top 90%", end: "top 70%", scrub: 1, invalidateOnRefresh: true },
           }
         );
       });
+
+      setTimeout(() => ScrollTrigger.refresh(), 200);
     }, page);
 
     return () => ctx.revert();
