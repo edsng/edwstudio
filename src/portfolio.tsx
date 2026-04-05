@@ -435,6 +435,10 @@ const Work: React.FC = () => {
   const cls = visible ? "reveal--visible" : "";
   const [filter, setFilter] = useState<string>("All");
 
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, [filter]);
+
   const categories = ["All", ...new Set(portfolioProjects.map((p) => p.category))];
   const filtered =
     filter === "All"
