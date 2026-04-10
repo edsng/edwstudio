@@ -202,7 +202,7 @@ function useReveal(threshold = 0.15): [RefObject<HTMLElement | null>, boolean] {
       },
       { threshold }
     );
-    const t = setTimeout(() => io.observe(el), 150);
+    const t = setTimeout(() => io.observe(el), 400);
     return () => { clearTimeout(t); io.disconnect(); };
   }, [threshold]);
 

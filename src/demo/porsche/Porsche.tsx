@@ -65,7 +65,7 @@ function useInView(threshold = 0.15) {
     const el = ref.current;
     if (!el) return;
     const io = new IntersectionObserver(([e]) => e.isIntersecting && setVisible(true), { threshold });
-    const delay = setTimeout(() => io.observe(el), 150);
+    const delay = setTimeout(() => io.observe(el), 400);
     return () => { clearTimeout(delay); io.disconnect(); };
   }, [threshold]);
   return { ref, visible };

@@ -93,7 +93,7 @@ function useReveal(dt = 0.45, mt = 0.3) {
     if (!el) return;
     const t = window.innerWidth <= 768 ? mt : dt;
     const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVis(true); }, { threshold: t });
-    const delay = setTimeout(() => io.observe(el), 150);
+    const delay = setTimeout(() => io.observe(el), 400);
     return () => { clearTimeout(delay); io.disconnect(); };
   }, [dt, mt]);
   return [ref, vis] as const;

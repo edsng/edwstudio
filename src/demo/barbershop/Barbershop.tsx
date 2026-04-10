@@ -73,7 +73,7 @@ function useReveal(desktopThreshold = 0.45, mobileThreshold = 0.3) {
     if (!el) return;
     const threshold = window.innerWidth <= 768 ? mobileThreshold : desktopThreshold;
     const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold });
-    const delay = setTimeout(() => io.observe(el), 150);
+    const delay = setTimeout(() => io.observe(el), 400);
     return () => { clearTimeout(delay); io.disconnect(); };
   }, [desktopThreshold, mobileThreshold]);
   return [ref, visible] as const;

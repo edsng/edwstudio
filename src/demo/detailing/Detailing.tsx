@@ -138,7 +138,7 @@ function useReveal(desktopThreshold = 0.45, mobileThreshold = 0.3) {
       },
       { threshold }
     );
-    const t = setTimeout(() => io.observe(el), 150);
+    const t = setTimeout(() => io.observe(el), 400);
     return () => { clearTimeout(t); io.disconnect(); };
   }, [desktopThreshold, mobileThreshold]);
 
