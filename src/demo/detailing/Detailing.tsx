@@ -138,8 +138,8 @@ function useReveal(desktopThreshold = 0.45, mobileThreshold = 0.3) {
       },
       { threshold }
     );
-    io.observe(el);
-    return () => io.disconnect();
+    const t = setTimeout(() => io.observe(el), 150);
+    return () => { clearTimeout(t); io.disconnect(); };
   }, [desktopThreshold, mobileThreshold]);
 
   return [ref, visible] as const;
@@ -853,6 +853,8 @@ const Detailing = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    const preload = (src: string) => { const img = new Image(); img.src = src; };
+    [imgBmw, imgPorsche, imgSclass, imgRs6, imgTesla, imgCorvette].forEach(preload);
   }, []);
 
   return (

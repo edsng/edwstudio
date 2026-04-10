@@ -64,8 +64,8 @@ function useReveal(desktopThreshold = 0.45, mobileThreshold = 0.3) {
     if (!el) return;
     const threshold = window.innerWidth <= 768 ? mobileThreshold : desktopThreshold;
     const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold });
-    io.observe(el);
-    return () => io.disconnect();
+    const delay = setTimeout(() => io.observe(el), 150);
+    return () => { clearTimeout(delay); io.disconnect(); };
   }, [desktopThreshold, mobileThreshold]);
   return [ref, visible] as const;
 }
@@ -457,7 +457,11 @@ const Footer = () => (
 const MedSpa = () => {
   const [bookingOpen, setBookingOpen] = useState(false);
   const openBooking = () => setBookingOpen(true);
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const preload = (src: string) => { const img = new Image(); img.src = src; };
+    [providerImg, ctaImg, imgBotox, imgDermal, imgPeels, imgMicroneedling, imgHydrafacial, imgLed].forEach(preload);
+  }, []);
 
   return (
     <div className="rs-page">

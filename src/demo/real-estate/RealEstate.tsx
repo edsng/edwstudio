@@ -173,8 +173,8 @@ function useReveal(desktopThreshold = 0.45, mobileThreshold = 0.3) {
       ([e]) => { if (e.isIntersecting) setVisible(true); },
       { threshold }
     );
-    io.observe(el);
-    return () => io.disconnect();
+    const delay = setTimeout(() => io.observe(el), 150);
+    return () => { clearTimeout(delay); io.disconnect(); };
   }, [desktopThreshold, mobileThreshold]);
   return [ref, visible] as const;
 }
@@ -962,7 +962,11 @@ const RealEstate = () => {
   const openModal = () => setModalOpen(true);
   const [selectedListing, setSelectedListing] = useState<number | null>(null);
 
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const preload = (src: string) => { const img = new Image(); img.src = src; };
+    [teamImg, valuationImg, listing1, listing2, listing3, n1, n2, n3, n4].forEach(preload);
+  }, []);
 
   return (
     <div className="mh-page">

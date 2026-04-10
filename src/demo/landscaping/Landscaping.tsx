@@ -83,8 +83,8 @@ function useReveal(desktopThreshold = 0.45, mobileThreshold = 0.3) {
     if (!el) return;
     const threshold = window.innerWidth <= 768 ? mobileThreshold : desktopThreshold;
     const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold });
-    io.observe(el);
-    return () => io.disconnect();
+    const delay = setTimeout(() => io.observe(el), 150);
+    return () => { clearTimeout(delay); io.disconnect(); };
   }, [desktopThreshold, mobileThreshold]);
   return [ref, visible] as const;
 }
@@ -733,6 +733,8 @@ const Landscaping = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     const t = setTimeout(() => { window.scrollTo(0, 0); }, 250);
+    const preload = (src: string) => { const img = new Image(); img.src = src; };
+    [imgTemecula, imgMurrieta, imgMenifee, imgTemeculaPool, imgWildomar, imgLakeElsinore, imgTurf, imgPavers, imgKitchen, imgLighting, imgPatioCover, imgFullYard].forEach(preload);
     return () => clearTimeout(t);
   }, []);
 

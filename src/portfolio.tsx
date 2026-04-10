@@ -202,8 +202,8 @@ function useReveal(threshold = 0.15): [RefObject<HTMLElement | null>, boolean] {
       },
       { threshold }
     );
-    io.observe(el);
-    return () => io.disconnect();
+    const t = setTimeout(() => io.observe(el), 150);
+    return () => { clearTimeout(t); io.disconnect(); };
   }, [threshold]);
 
   return [ref, visible];
@@ -447,6 +447,22 @@ const Work: React.FC = () => {
   useEffect(() => {
     ScrollTrigger.refresh();
   }, [filter]);
+
+  // Preload hero images from each demo when work section is visible
+  useEffect(() => {
+    if (!visible) return;
+    const preload = (src: string) => { const img = new Image(); img.src = src; };
+    // Dynamic imports resolve to hashed URLs at build time
+    import("./demo/detailing/assets/revuelto.jpg").then(m => preload(m.default));
+    import("./demo/real-estate/assets/hero.jpg").then(m => preload(m.default));
+    import("./demo/fitness/assets/trainer.jpg").then(m => preload(m.default));
+    import("./demo/barbershop/assets/background.jpg").then(m => preload(m.default));
+    import("./demo/landscaping/assets/hero.jpg").then(m => preload(m.default));
+    import("./demo/medspa/assets/hero.jpg").then(m => preload(m.default));
+    import("./demo/porsche/logo.png").then(m => preload(m.default));
+    // Porsche hero is an external CDN URL
+    preload("https://scontent-lax3-2.cdninstagram.com/v/t51.82787-15/603076532_18548021245050680_5927660580651961697_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=103&ig_cache_key=Mzc5MzM3Njc1ODczMzk3MDkwNg%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4OTYwLnNkci5DMyJ9&_nc_ohc=9TlVwj72NecQ7kNvwFTXtc0&_nc_oc=Adru632Obcr4RRhQiNJdNnse29DlUath_MkpdlYKamMhV_s2j7GfiWU3hn3XvqMtLlw&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-lax3-2.cdninstagram.com&_nc_gid=uFnOEJ92FxxRJxZ_37Wpug&_nc_ss=7a32e&oh=00_Af27uMYjH42D_ZPBDUMAy7HvhFIY_ZwTntoRK6fLcspYUg&oe=69DE1D2F");
+  }, [visible]);
 
   const categories = ["Featured", ...new Set(portfolioProjects.map((p) => p.category))];
   const filtered =

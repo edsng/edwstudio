@@ -65,8 +65,8 @@ function useInView(threshold = 0.15) {
     const el = ref.current;
     if (!el) return;
     const io = new IntersectionObserver(([e]) => e.isIntersecting && setVisible(true), { threshold });
-    io.observe(el);
-    return () => io.disconnect();
+    const delay = setTimeout(() => io.observe(el), 150);
+    return () => { clearTimeout(delay); io.disconnect(); };
   }, [threshold]);
   return { ref, visible };
 }
@@ -230,6 +230,11 @@ export default function Porsche() {
   const scrollY = useScrollY();
   const navSolid = scrollY > 80;
   const perfSection = useScrollProgress();
+
+  useEffect(() => {
+    const preload = (src: string) => { const img = new Image(); img.src = src; };
+    [SHOT_1, SHOT_2, SHOT_3, TRACK, DETAIL].forEach(preload);
+  }, []);
 
   return (
     <div className="gt4-app">
