@@ -10,6 +10,7 @@ import Barbershop from "./demo/barbershop/Barbershop";
 import Landscaping from "./demo/landscaping/Landscaping";
 import MedSpa from "./demo/medspa/MedSpa";
 import FlowSync from "./demo/saas/FlowSync";
+import Porsche from "./demo/porsche/Porsche";
 
 // Handles scroll reset and ScrollTrigger cleanup on every route change
 function RouteChangeHandler() {
@@ -41,6 +42,7 @@ function App() {
         <Route path="/demo/landscaping" element={<Landscaping />} />
         <Route path="/demo/medspa" element={<MedSpa />} />
         <Route path="/demo/saas" element={<FlowSync />} />
+        <Route path="/demo/porsche" element={<Porsche />} />
       </Routes>
     </BrowserRouter>
   );

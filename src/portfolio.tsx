@@ -138,6 +138,15 @@ const portfolioProjects: PortfolioProject[] = [
     featured: false,
     category: "Local Business",
   },
+  {
+    title: "Porsche 718 Cayman GT4 RS",
+    description:
+      "Premium automotive landing page with parallax hero, scroll-driven engineering section with pinned image crossfade, animated spec counters, red curtain image reveals, and text clip-mask animations. Dark luxury aesthetic inspired by Porsche's design language.",
+    demoPath: "/demo/porsche",
+    tags: ["React", "TypeScript", "Scroll Animations"],
+    featured: true,
+    category: "Concept",
+  },
 ];
 
 const processSteps: ProcessStep[] = [
@@ -433,15 +442,15 @@ const Services: React.FC = () => {
 const Work: React.FC = () => {
   const [ref, visible] = useReveal();
   const cls = visible ? "reveal--visible" : "";
-  const [filter, setFilter] = useState<string>("All");
+  const [filter, setFilter] = useState<string>("Featured");
 
   useEffect(() => {
     ScrollTrigger.refresh();
   }, [filter]);
 
-  const categories = ["All", ...new Set(portfolioProjects.map((p) => p.category))];
+  const categories = ["Featured", ...new Set(portfolioProjects.map((p) => p.category))];
   const filtered =
-    filter === "All"
+    filter === "Featured"
       ? portfolioProjects
       : portfolioProjects.filter((p) => p.category === filter);
 
