@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './porsche.css';
+import logo from './logo.png';
 
 /* ── Imagery ── */
 const HERO   = 'https://scontent-lax3-2.cdninstagram.com/v/t51.82787-15/603076532_18548021245050680_5927660580651961697_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=103&ig_cache_key=Mzc5MzM3Njc1ODczMzk3MDkwNg%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4OTYwLnNkci5DMyJ9&_nc_ohc=9TlVwj72NecQ7kNvwFTXtc0&_nc_oc=Adru632Obcr4RRhQiNJdNnse29DlUath_MkpdlYKamMhV_s2j7GfiWU3hn3XvqMtLlw&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-lax3-2.cdninstagram.com&_nc_gid=uFnOEJ92FxxRJxZ_37Wpug&_nc_ss=7a32e&oh=00_Af27uMYjH42D_ZPBDUMAy7HvhFIY_ZwTntoRK6fLcspYUg&oe=69DE1D2F';
@@ -237,7 +238,7 @@ export default function Porsche() {
       {/* NAV */}
       <nav className={`gt4-nav ${navSolid ? 'gt4-solid' : ''}`}>
         <div className="gt4-nav-inner">
-          <span className="gt4-brand">PORSCHE</span>
+          <img src={logo} alt="Porsche" className="gt4-brand" />
           <ul className="gt4-nav-links">
             <li><a href="#gt4-model">Model</a></li>
             <li><a href="#gt4-performance">Performance</a></li>
@@ -385,7 +386,7 @@ export default function Porsche() {
 
       <footer className="gt4-footer">
         <div className="gt4-footer-inner">
-          <div className="gt4-brand">PORSCHE</div>
+          <img src={logo} alt="Porsche" className="gt4-brand" />
           <div className="gt4-footer-links">
             <a href="#">Legal</a>
             <a href="#">Privacy</a>

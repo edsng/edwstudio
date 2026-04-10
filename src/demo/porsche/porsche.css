@@ -1,4 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+
+@font-face {
+  font-family: 'Porsche Next';
+  src: url('https://cdn.ui.porsche.com/porsche-design-system/fonts/porsche-next-latin-regular.b8f1c20.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Porsche Next';
+  src: url('https://cdn.ui.porsche.com/porsche-design-system/fonts/porsche-next-latin-semi-bold.b5f6fca.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Porsche Next';
+  src: url('https://cdn.ui.porsche.com/porsche-design-system/fonts/porsche-next-latin-bold.0fbdc6d.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   --gt4-bg: #ffffff;
@@ -51,11 +73,9 @@
   gap: 2rem;
 }
 .gt4-brand {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.6rem;
-  letter-spacing: 0.32em;
-  color: #fff;
-  text-decoration: none;
+  height: 14px;
+  width: auto;
+  display: block;
 }
 .gt4-nav-links { display: flex; gap: 2.5rem; list-style: none; }
 .gt4-nav-links a {
@@ -86,7 +106,7 @@
   font-size: 0.85rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0.95rem 2rem;
+  padding: 1rem 2rem;
   border: 1px solid #fff;
   background: transparent;
   color: #fff;
@@ -94,17 +114,18 @@
   transition: all var(--gt4-duration-short) ease;
   font-weight: 500;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 .gt4-cta-btn::before {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: -1px;
   background: #fff;
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.45s var(--gt4-ease-power);
   z-index: -1;
+  border-radius: inherit;
 }
 .gt4-cta-btn:hover::before { transform: scaleX(1); transform-origin: left; }
 .gt4-cta-btn:hover { color: #000; }
@@ -179,11 +200,12 @@
   animation: gt4-clipReveal 0.9s var(--gt4-ease-power) 0.2s both;
 }
 .gt4-hero-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(3.5rem, 10vw, 9rem);
-  line-height: 0.95;
-  letter-spacing: 0.01em;
-  font-weight: 400;
+  font-family: 'Porsche Next', 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(2.8rem, 8vw, 7rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+  text-transform: uppercase;
   margin-bottom: 1.5rem;
 }
 .gt4-hero-line { display: block; overflow: hidden; }
@@ -245,7 +267,7 @@
    TEXT REVEAL
    ════════════════════════════════════ */
 .gt4-text-reveal { overflow: hidden; }
-.gt4-tr-line { display: block; overflow: hidden; }
+.gt4-tr-line { display: block; overflow: hidden; padding-bottom: 0.15em; }
 .gt4-tr-inner {
   display: block;
   transform: translateY(110%);
@@ -308,11 +330,11 @@
 }
 
 .gt4-section-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.2rem, 5.5vw, 4.8rem);
-  line-height: 1;
-  font-weight: 400;
-  letter-spacing: 0.005em;
+  font-family: 'Porsche Next', 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(1.8rem, 4.5vw, 3.6rem);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   margin-bottom: 2rem;
 }
 .gt4-section-title.gt4-light { color: var(--gt4-fg-light); }
@@ -367,8 +389,9 @@
 }
 .gt4-reveal.gt4-in .gt4-spec::before { width: 100%; }
 .gt4-spec-value {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(3.5rem, 7vw, 5.5rem);
+  font-family: 'Porsche Next', 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 700;
   line-height: 1;
   color: #fff;
   display: flex;
@@ -507,8 +530,9 @@
 }
 
 .gt4-eng-step-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.8rem;
+  font-family: 'Porsche Next', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
   color: rgba(255, 255, 255, 0.12);
   line-height: 1;
   transition: color 0.5s var(--gt4-ease-power);
@@ -519,9 +543,10 @@
 }
 
 .gt4-eng-step-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.5rem;
-  letter-spacing: 0.02em;
+  font-family: 'Porsche Next', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   color: rgba(255, 255, 255, 0.35);
   transition: color 0.5s var(--gt4-ease-power);
 }
@@ -680,21 +705,30 @@
 
   .gt4-final-cta { padding: 6rem 1.25rem; }
 
+  .gt4-footer { padding: 2.5rem 1.25rem; }
+  .gt4-footer-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  .gt4-footer-links { justify-content: center; flex-wrap: wrap; }
+
   .gt4-eng-sticky {
     grid-template-columns: 1fr;
-    grid-template-rows: 35vh 1fr;
+    grid-template-rows: 30vh 1fr;
   }
   .gt4-eng-steps {
-    padding: 1.5rem 1.25rem;
+    padding: 1rem 1.25rem;
     justify-content: flex-start;
-    overflow-y: auto;
+    overflow: hidden;
   }
   .gt4-eng-heading {
-    margin-bottom: 1.5rem;
-    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
   }
   .gt4-eng-step {
-    padding: 1rem 0;
+    padding: 0.6rem 0;
   }
   .gt4-eng-step-header {
     flex-direction: row;
@@ -702,16 +736,19 @@
     gap: 0.8rem;
   }
   .gt4-eng-step-num {
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
   .gt4-eng-step-title {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   .gt4-eng-step-body {
-    padding-left: 2.1rem;
+    padding-left: 1.8rem;
   }
   .gt4-eng-step-body p {
-    font-size: 0.82rem;
-    line-height: 1.6;
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+  .gt4-eng-step.gt4-active .gt4-eng-step-body {
+    max-height: 180px;
   }
 }
